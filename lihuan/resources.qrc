@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/logo.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_fail_110px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive1_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive2_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive3_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive4_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive5_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive6_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive7_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive8_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_inactive9_20px.svg</file>
+        <file>icons/deepin/builtin/light/icons/iso_progress_110px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_fail_110px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive1_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive2_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive3_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive4_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive5_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive6_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive7_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive8_20px.svg</file>
+        <file>icons/deepin/builtin/dark/icons/iso_inactive9_20px.svg</file>
+        <file>icons/deepin/builtin/icons/iso_false_22px.svg</file>
+        <file>icons/deepin/builtin/icons/iso_logo_32px.svg</file>
+    </qresource>
+</RCC>
