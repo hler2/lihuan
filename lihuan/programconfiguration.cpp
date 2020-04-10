@@ -17,9 +17,8 @@ ProgramConfiguration::ProgramConfiguration(QWidget *parent) : QWidget(parent)
     pDCommandLinkButtonclear->hide();
     pMainLayout->addLayout(pHBoxLayoutProgramConfiguration);
 
-    QHBoxLayout *pHBoxLayoutdeb = new QHBoxLayout();
-    pDLabeldeb = new DFloatingMessage();
-
+    QHBoxLayout *pHBoxLayoutdeb = new QHBoxLayout(); 
+    pDLabeldeb = new DFloatingMessage(DFloatingMessage::ResidentType, this);
     pHBoxLayoutdeb->addWidget(pDLabeldeb);
     pDLabeldeb->hide();
     pMainLayout->addLayout(pHBoxLayoutdeb);
@@ -41,7 +40,7 @@ ProgramConfiguration::ProgramConfiguration(QWidget *parent) : QWidget(parent)
         DFileDialog *pDFileDialog = new DFileDialog();
         pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
         pDFileDialog->setDirectory("./Desktop");
-        pDFileDialog->setNameFilter(tr("*.txt"));
+        pDFileDialog->setNameFilter(tr("*.deb"));
         pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
         pDFileDialog->show();
         pDFileDialog->exec();
@@ -49,8 +48,8 @@ ProgramConfiguration::ProgramConfiguration(QWidget *parent) : QWidget(parent)
         QStringList strlistSelectedName = pDFileDialog->selectedFiles();
         for (QString strSelectFile : strlistSelectedName) {
             QFileInfo fileInfo(strSelectFile);
-            pDLabeldeb->setMessage(fileInfo.filePath());
 
+            pDLabeldeb->setMessage(fileInfo.filePath());
             pDLabelChoose->hide();
             pDCommandLinkButtonclear->show();
             pDLabeldeb->show();

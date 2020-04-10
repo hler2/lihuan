@@ -9,10 +9,11 @@ chooseISO::chooseISO(QWidget *parent)
     qDebug()<<"333333";
 
     QVBoxLayout *pMainLayout = new QVBoxLayout();
-    //pMainLayout->setSpacing(20);
+   // pMainLayout->setSpacing(20);
     //pMainLayout->addStretch();
 
     QHBoxLayout *pHBoxLayout3 = new QHBoxLayout();
+    //pHBoxLayout3->setSpacing(20);
     DLabel *pDLabel = new DLabel(tr("选择ISO"));
     QFont font;
     font.setPointSize(20);

@@ -49,25 +49,47 @@ mainwindow::mainwindow(DMainWindow *parent)
      titlebar()->setMenu(pDMenu);
 
      connect(newHelp,&QAction::triggered,this,&mainwindow::slotActionHlep);
+    //有DFrame框架布局
+     m_pMainLayout = new QHBoxLayout();
+     DFrame *left = new DFrame();
+     left->setMinimumSize(100, 500);
+     m_pMainLayout->addWidget(left);
 
-     m_pHBoxLayout = new QHBoxLayout();
-     m_pHBoxLayout->addWidget(m_pDListView, 3);
-     m_pHBoxLayout->addWidget(m_pStackedWidget, 7);
+     DFrame *right = new DFrame();
+     right->setMinimumSize(530, 500);
+     m_pMainLayout->addWidget(right);
 
+     //将listview布局加到frame中
+     QHBoxLayout *m_pHBoxLayoutlist = new QHBoxLayout();
+     m_pHBoxLayoutlist->addWidget(m_pDListView);
+     left->setLayout(m_pHBoxLayoutlist);
+
+     //将StackedWidget布局加到frame中
+     QHBoxLayout *m_pHBoxLayoutstack = new QHBoxLayout();
+     m_pHBoxLayoutstack->addWidget(m_pStackedWidget);
+     right->setLayout(m_pHBoxLayoutstack);
+
+     // 嵌套布局（嵌套进去布局乱了，未选择）
+     //m_pDListView = new DListView(left);
+     //m_pStackedWidget = new QStackedWidget(right);
+
+     //无DFrame框架布局
+     //m_pHBoxLayout = new QHBoxLayout();
+    // m_pHBoxLayout->addWidget(m_pDListView, 3);
+    // m_pHBoxLayout->addWidget(m_pStackedWidget, 7);
 
      pItemModel = new QStandardItemModel(this);
 
+
      pItemchooseISO = new DStandardItem("选择ISO");
      pItemchooseISO->setIcon(QIcon::fromTheme("iso_inactive1"));
-     pItemchooseISO->type();
+
      m_pStackedWidget->addWidget(m_chooseISO);
      m_has_ItemName_ItemWiget.insert("选择ISO", m_chooseISO);
      pItemModel->appendRow(pItemchooseISO);
      // connect函数，最后一个参数需要注意，不能使用默认
      connect(m_chooseISO, SIGNAL(toSelectframe()), this, SLOT(fromchooseISO()), Qt::QueuedConnection);
      //connect(m_chooseISO, &chooseISO::toSelectframe, this, &mainwindow::slotListViewItemClicked);
-
-    // m_pHBoxLayout->addWidget(pDIconButton);
 
      pItemSelectFrame = new DStandardItem("选择架构");
      pItemSelectFrame->setIcon(QIcon::fromTheme("iso_inactive2"));
@@ -134,7 +156,7 @@ mainwindow::mainwindow(DMainWindow *parent)
 
     // m_pStackedWidget->setCurrentWidget(m_chooseISO);//默认显示页面
      connect(m_pDListView, &DListView::pressed, this, &mainwindow::slotListViewItemClicked, Qt::QueuedConnection);
-     m_pCentralWidget->setLayout(m_pHBoxLayout);
+     m_pCentralWidget->setLayout(m_pMainLayout);
     setCentralWidget(m_pCentralWidget);
 
 

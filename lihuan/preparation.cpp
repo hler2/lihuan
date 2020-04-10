@@ -18,7 +18,7 @@ Preparation::Preparation(QWidget *parent) : QWidget(parent)
     pMainLayout->addLayout(pHBoxLayoutProgramConfiguration);
 
     QHBoxLayout *pHBoxLayoutdeb = new QHBoxLayout();
-    pDLabeldeb = new DFloatingMessage();
+    pDLabeldeb = new DFloatingMessage(DFloatingMessage::ResidentType, this);
     pHBoxLayoutdeb->addWidget(pDLabeldeb);
     pDLabeldeb->hide();
     pMainLayout->addLayout(pHBoxLayoutdeb);
@@ -40,7 +40,7 @@ Preparation::Preparation(QWidget *parent) : QWidget(parent)
         DFileDialog *pDFileDialog = new DFileDialog();
         pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
         pDFileDialog->setDirectory("./Desktop");
-        pDFileDialog->setNameFilter(tr("*.txt"));
+        pDFileDialog->setNameFilter(tr("*.deb"));
         pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
         pDFileDialog->show();
         pDFileDialog->exec();

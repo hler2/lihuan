@@ -27,7 +27,7 @@ public slots:
 private:
     QTimer *m_ptimer;
     DWaterProgress *m_pDWaterProgress;
-    int m_valus = 0;
+    int m_timeNum = 0;
     DPushButton *m_pDPushButton;
      DPushButton *m_pDPushButtonok;
     DPushButton *m_pDPushButtonchakan;

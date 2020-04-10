@@ -35,6 +35,7 @@
 #include <QString>
 #include <DStatusBar>
 #include <DFrame>
+#include <QFrame>
 
 #include "chooseISO.h"
 #include "selectframe.h"
@@ -74,6 +75,7 @@ private:
 
 
      QHBoxLayout *m_pHBoxLayout;
+      QHBoxLayout *m_pMainLayout;
      DListView   *m_pDListView;
      QStackedWidget *m_pStackedWidget;
      QHash<QString, QWidget*> m_has_ItemName_ItemWiget;
@@ -83,8 +85,6 @@ private:
 
      QStandardItemModel *pItemModel;
 
-     DFrame left;
-     DFrame right;
 
 
 
