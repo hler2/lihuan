@@ -25,7 +25,7 @@ MidInstallation::MidInstallation(QWidget *parent) : QWidget(parent)
     pMainLayout->addStretch(50);
 
     QHBoxLayout *pHBoxLayoutChoose = new QHBoxLayout();
-    DLabel *pDLabelChoose = new DLabel(tr("请选择中期安装"));
+    pDLabelChoose = new DLabel(tr("请选择中期安装"));
     pHBoxLayoutChoose->setAlignment(Qt::AlignCenter);
     pHBoxLayoutChoose->addWidget(pDLabelChoose);
     pMainLayout->addLayout(pHBoxLayoutChoose);
@@ -87,4 +87,5 @@ void MidInstallation::slotDpushBtnClearClicked()
 {
     qDebug()<<"clear";
     pDLabeldeb->close();
+    pDLabelChoose->show();
 }

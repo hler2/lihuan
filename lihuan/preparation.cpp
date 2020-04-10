@@ -25,7 +25,7 @@ Preparation::Preparation(QWidget *parent) : QWidget(parent)
     pMainLayout->addStretch(50);
 
     QHBoxLayout *pHBoxLayoutChoose = new QHBoxLayout();
-    DLabel *pDLabelChoose = new DLabel(tr("请选择前期准备"));
+    pDLabelChoose = new DLabel(tr("请选择前期准备"));
     pHBoxLayoutChoose->setAlignment(Qt::AlignCenter);
     pHBoxLayoutChoose->addWidget(pDLabelChoose);
     pMainLayout->addLayout(pHBoxLayoutChoose);
@@ -84,6 +84,7 @@ void Preparation::slotDpushBtnClearClicked()
 {
     qDebug()<<"clear";
     pDLabeldeb->close();
+    pDLabelChoose->show();
 }
 void Preparation::slotDpushBtnNextClicked()
 {

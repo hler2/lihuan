@@ -16,7 +16,7 @@
 #include <DMessageManager>
 #include <DApplicationHelper>
 #include <DFileDialog>
-
+#include <dfilechooseredit.h>
 #include <QWidget>
 
 class ChooseKermel : public QWidget
@@ -32,6 +32,8 @@ private:
     DLineEdit *m_pDLineEdit ;
     DLineEdit *m_pDLineEdit1 ;
     DPushButton *pDpushBtn2;
+    DFileChooserEdit *openfileKernel;
+    DFileChooserEdit *openfileInitrd;
 
 
 

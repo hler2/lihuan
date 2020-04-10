@@ -43,7 +43,7 @@ mainwindow::mainwindow(DMainWindow *parent)
 
      //设置菜单栏
      DMenu *pDMenu = new DMenu;
-     newHelp = new QAction(tr("help"),this);
+     newHelp = new QAction(tr("帮助"),this);
 
      pDMenu->addAction(newHelp);
      titlebar()->setMenu(pDMenu);
@@ -52,11 +52,11 @@ mainwindow::mainwindow(DMainWindow *parent)
     //有DFrame框架布局
      m_pMainLayout = new QHBoxLayout();
      DFrame *left = new DFrame();
-     left->setMinimumSize(100, 500);
+     left->setFixedSize(220, 520);
      m_pMainLayout->addWidget(left);
 
      DFrame *right = new DFrame();
-     right->setMinimumSize(530, 500);
+     right->setFixedSize(550, 520);
      m_pMainLayout->addWidget(right);
 
      //将listview布局加到frame中
@@ -88,8 +88,7 @@ mainwindow::mainwindow(DMainWindow *parent)
      m_has_ItemName_ItemWiget.insert("选择ISO", m_chooseISO);
      pItemModel->appendRow(pItemchooseISO);
      // connect函数，最后一个参数需要注意，不能使用默认
-     connect(m_chooseISO, SIGNAL(toSelectframe()), this, SLOT(fromchooseISO()), Qt::QueuedConnection);
-     //connect(m_chooseISO, &chooseISO::toSelectframe, this, &mainwindow::slotListViewItemClicked);
+     //connect(m_chooseISO, SIGNAL(toSelectframe()), this, SLOT(fromchooseISO()), Qt::QueuedConnection);
 
      pItemSelectFrame = new DStandardItem("选择架构");
      pItemSelectFrame->setIcon(QIcon::fromTheme("iso_inactive2"));
@@ -98,7 +97,8 @@ mainwindow::mainwindow(DMainWindow *parent)
      //m_pStackedWidget->setEnabled(false);
      m_has_ItemName_ItemWiget.insert("选择架构", m_SelectFrame);
      pItemModel->appendRow(pItemSelectFrame);
-    connect(m_SelectFrame, SIGNAL(toProgramConfiguration()), this, SLOT(fromSelectframe()), Qt::QueuedConnection);
+    //connect(m_SelectFrame, SIGNAL(toProgramConfiguration()), this, SLOT(fromSelectframe()), Qt::QueuedConnection);
+
 
 
      pItemProgramConfiguration = new DStandardItem("程序配置");
@@ -107,7 +107,7 @@ mainwindow::mainwindow(DMainWindow *parent)
      m_pStackedWidget->addWidget(m_ProgramConfiguration);
      m_has_ItemName_ItemWiget.insert("程序配置", m_ProgramConfiguration);
      pItemModel->appendRow(pItemProgramConfiguration);
-     connect(m_ProgramConfiguration, SIGNAL(toPreparation()), this, SLOT(fromProgramConfiguration()), Qt::QueuedConnection);
+     //connect(m_ProgramConfiguration, SIGNAL(toPreparation()), this, SLOT(fromProgramConfiguration()), Qt::QueuedConnection);
 
 
      pItemPreparation = new DStandardItem("前期准备");
@@ -116,7 +116,7 @@ mainwindow::mainwindow(DMainWindow *parent)
      m_pStackedWidget->addWidget(m_Preparation);
      m_has_ItemName_ItemWiget.insert("前期准备", m_Preparation);
      pItemModel->appendRow(pItemPreparation);
-     connect(m_Preparation, SIGNAL(toMidInstallation()), this, SLOT(fromPreparation()), Qt::QueuedConnection);
+     //connect(m_Preparation, SIGNAL(toMidInstallation()), this, SLOT(fromPreparation()), Qt::QueuedConnection);
 
      pItemMidInstallation = new DStandardItem("中期安装");
      pItemMidInstallation->setIcon(QIcon::fromTheme("iso_inactive5"));
@@ -124,7 +124,7 @@ mainwindow::mainwindow(DMainWindow *parent)
      m_pStackedWidget->addWidget(m_MidInstallation);
      m_has_ItemName_ItemWiget.insert("中期安装", m_MidInstallation);
      pItemModel->appendRow(pItemMidInstallation);
-     connect(m_MidInstallation, SIGNAL(toPostCleaning()), this, SLOT(fromMidInstallation()), Qt::QueuedConnection);
+     //connect(m_MidInstallation, SIGNAL(toPostCleaning()), this, SLOT(fromMidInstallation()), Qt::QueuedConnection);
 
      pItemPostCleaning = new DStandardItem("后期清理");
      pItemPostCleaning->setIcon(QIcon::fromTheme("iso_inactive6"));
@@ -132,7 +132,7 @@ mainwindow::mainwindow(DMainWindow *parent)
      m_pStackedWidget->addWidget(m_PostCleaning);
      m_has_ItemName_ItemWiget.insert("后期清理", m_PostCleaning);
      pItemModel->appendRow(pItemPostCleaning);
-     connect(m_PostCleaning, SIGNAL(toChooseKermel()), this, SLOT(fromPostCleaning()), Qt::QueuedConnection);
+     //connect(m_PostCleaning, SIGNAL(toChooseKermel()), this, SLOT(fromPostCleaning()), Qt::QueuedConnection);
 
 
      pItemChooseKermel = new DStandardItem("选择Kermel");
@@ -141,7 +141,9 @@ mainwindow::mainwindow(DMainWindow *parent)
      m_pStackedWidget->addWidget(m_ChooseKermel);
      m_has_ItemName_ItemWiget.insert("选择Kermel", m_ChooseKermel);
      pItemModel->appendRow(pItemChooseKermel);
-     connect(m_ChooseKermel, SIGNAL(toOutput()), this, SLOT(fromChooseKermel()), Qt::QueuedConnection);
+     //connect(m_ChooseKermel, SIGNAL(toOutput()), this, SLOT(fromChooseKermel()), Qt::QueuedConnection);
+
+
 
      pItemOutput = new DStandardItem("输出");
      pItemOutput->setIcon(QIcon::fromTheme("iso_inactive8"));
@@ -151,8 +153,17 @@ mainwindow::mainwindow(DMainWindow *parent)
      pItemModel->appendRow(pItemOutput);
 
 
-     m_pDListView->setModel(pItemModel);
 
+     connect(m_chooseISO, &chooseISO::toSelectframe, this, &mainwindow::slotListViewItem);
+     connect(m_SelectFrame, &SelectFrame::toProgramConfiguration, this, &mainwindow::slotListViewItem);
+     connect(m_ProgramConfiguration, &ProgramConfiguration::toPreparation, this, &mainwindow::slotListViewItem);
+     connect(m_Preparation, &Preparation::toMidInstallation, this, &mainwindow::slotListViewItem);
+     connect(m_MidInstallation, &MidInstallation::toPostCleaning, this, &mainwindow::slotListViewItem);
+     connect(m_PostCleaning, &PostCleaning::toChooseKermel, this, &mainwindow::slotListViewItem);
+     connect(m_ChooseKermel, &ChooseKermel::toOutput, this, &mainwindow::slotListViewItem);
+
+     m_pDListView->setModel(pItemModel);
+     m_pDListView->setCurrentIndex(m_pDListView->model()->index(0,0));
 
     // m_pStackedWidget->setCurrentWidget(m_chooseISO);//默认显示页面
      connect(m_pDListView, &DListView::pressed, this, &mainwindow::slotListViewItemClicked, Qt::QueuedConnection);
@@ -174,65 +185,30 @@ void mainwindow::timeUpdata()
 //    this->statusBar()->addWidget(timelable);
 
 }
+
 void mainwindow::slotActionHlep()
 {
     qDebug() << "Help" ;
 
 
 }
-void mainwindow::fromchooseISO()
-{
-    pItemchooseISO->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_SelectFrame);//显示页面
-    pItemSelectFrame->setEnabled(true);
 
-}
-void mainwindow ::fromSelectframe()
-{
-    pItemSelectFrame->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_ProgramConfiguration);//显示页面
-    pItemProgramConfiguration->setEnabled(true);
-}
-void mainwindow ::fromProgramConfiguration()
-{
-    pItemProgramConfiguration->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_Preparation);//显示页面
-    pItemPreparation->setEnabled(true);
-}
-void mainwindow ::fromPreparation()
-{
-    pItemPreparation->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_MidInstallation);
-    pItemMidInstallation->setEnabled(true);
-}
-void mainwindow ::fromMidInstallation()
-{
-    pItemMidInstallation->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_PostCleaning);
-    pItemPostCleaning->setEnabled(true);
-}
-void mainwindow ::fromPostCleaning()
-{
-    pItemPostCleaning->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_ChooseKermel);
-    pItemChooseKermel->setEnabled(true);
-}
-void mainwindow ::fromChooseKermel()
-{
-    pItemChooseKermel->setCheckState(Qt::Checked);
-    m_pStackedWidget->setCurrentWidget(m_Output);
-    pItemOutput->setEnabled(true);
-}
 void mainwindow::slotListViewItemClicked(const QModelIndex &index)
 {
     QString strItemName = index.data().toString();
     qDebug() << "strItemName:" << strItemName;
 
     m_pStackedWidget->setCurrentWidget(m_has_ItemName_ItemWiget.value(strItemName));
-//    QStandardItemModel *tem = pItemModel;
-//        tem->item(index)->setCheckState(Qt::Checked);
-//        tem->item(index+1)->setEnabled(true);
-//        m_pDListView->setCurrentIndex(tem->indexFromItem(tem->item(index + 1)));
-//    m_pStackedWidget->setCurrentIndex(index+1);
+
+
+}
+void mainwindow::slotListViewItem()
+{
+        int index = m_pDListView->currentIndex().row();
+        QStandardItemModel *tem = pItemModel;
+        tem->item(index)->setCheckState(Qt::Checked);
+        tem->item(index+1)->setEnabled(true);
+        m_pDListView->setCurrentIndex(tem->indexFromItem(tem->item(index + 1)));
+        m_pStackedWidget->setCurrentIndex(index+1);
 }
 

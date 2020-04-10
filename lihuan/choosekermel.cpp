@@ -21,31 +21,9 @@ ChooseKermel::ChooseKermel(QWidget *parent) : QWidget(parent)
     pMainLayout->addLayout(pHBoxLayoutdeb);
 
     QHBoxLayout *pHBoxLayout1 = new QHBoxLayout();
-    m_pDLineEdit = new DLineEdit();
-    pHBoxLayout1->addWidget(m_pDLineEdit);
-
-    DPushButton *pDPusBtn = new DPushButton(tr("..."));
-    pDPusBtn->setStyleSheet("background-color:#0081FF;");
-
-    connect(pDPusBtn, &DPushButton::clicked, this, [=] {
-        DFileDialog *pDFileDialog = new DFileDialog();
-        pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
-        pDFileDialog->setDirectory("./Desktop");
-        pDFileDialog->setNameFilter(tr("*.deb"));
-        //pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
-        pDFileDialog->show();
-        pDFileDialog->exec();
-
-        QStringList strlistSelectedName = pDFileDialog->selectedFiles();
-        for (QString strSelectFile : strlistSelectedName) {
-             QFileInfo fileInfo(strSelectFile);
-            m_pDLineEdit->setText(fileInfo.filePath());
-
-
-        }
-    });
-
-    pHBoxLayout1->addWidget(pDPusBtn);
+    openfileKernel = new DFileChooserEdit();
+    openfileKernel->setNameFilters(QStringList("*.iso"));
+    pHBoxLayout1->addWidget(openfileKernel);
     pMainLayout->addLayout(pHBoxLayout1);
 
     QHBoxLayout *pHBoxLayoutdeb1 = new QHBoxLayout();
@@ -54,32 +32,9 @@ ChooseKermel::ChooseKermel(QWidget *parent) : QWidget(parent)
     pMainLayout->addLayout(pHBoxLayoutdeb1);
 
     QHBoxLayout *pHBoxLayoutin = new QHBoxLayout();
-    m_pDLineEdit1 = new DLineEdit();
-    pHBoxLayoutin->addWidget(m_pDLineEdit1);
-
-    DPushButton *pDPusBtnin = new DPushButton(tr("..."));
-    pDPusBtnin->setStyleSheet("background-color:#0081FF;");
-    connect(pDPusBtnin, &DPushButton::clicked, this, [=] {
-        DFileDialog *pDFileDialog = new DFileDialog();
-        pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
-        pDFileDialog->setDirectory("./Desktop");
-        pDFileDialog->setNameFilter(tr("*.txt"));
-        //pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
-        pDFileDialog->show();
-        pDFileDialog->exec();
-
-        QStringList strlistSelectedName1 = pDFileDialog->selectedFiles();
-        for (QString strSelectFile1 : strlistSelectedName1) {
-            QFileInfo fileInfo1(strSelectFile1);
-            m_pDLineEdit1->setText(fileInfo1.filePath());
-            if((m_pDLineEdit->text() != "") && (m_pDLineEdit1->text() == fileInfo1.filePath()))
-            {
-                pDpushBtn2->setEnabled(true);
-            }
-        }
-    });
-
-    pHBoxLayoutin->addWidget(pDPusBtnin);
+    openfileInitrd = new DFileChooserEdit();
+    openfileInitrd->setNameFilters(QStringList("*.iso"));
+    pHBoxLayoutin->addWidget(openfileInitrd);
     pMainLayout->addLayout(pHBoxLayoutin);
 
 

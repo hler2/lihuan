@@ -93,14 +93,15 @@ signals:
 public slots:
      void slotActionHlep();
      void slotListViewItemClicked(const QModelIndex &index);
-     void fromchooseISO();
-     void fromSelectframe();
-     void fromProgramConfiguration();
-     void fromPreparation();
-     void fromMidInstallation();
-     void fromPostCleaning();
-     void fromChooseKermel();
+//     void fromchooseISO();
+//     void fromSelectframe();
+//     void fromProgramConfiguration();
+//     void fromPreparation();
+//     void fromMidInstallation();
+//     void fromPostCleaning();
+//     void fromChooseKermel();
      //void fromOutput();
+     void slotListViewItem();
 
  private:
      void timeUpdata();

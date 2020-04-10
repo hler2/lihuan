@@ -14,6 +14,7 @@
 #include <DFileDialog>
 #include <DLineEdit>
 #include <DFloatingMessage>
+#include <QFileIconProvider>
 
 
 class ProgramConfiguration : public QWidget
@@ -29,6 +30,7 @@ private:
 
     DFloatingMessage *pDLabeldeb;
     DPushButton *pDpushBtn2;
+     DLabel *pDLabelChoose;
 public slots:
     void slotDpushBtnNextClicked();
     void slotDpushBtnClearClicked();

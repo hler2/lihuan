@@ -25,12 +25,15 @@ SelectFrame::SelectFrame(QWidget *parent)
 
      QStandardItemModel *pItemModel = new QStandardItemModel();
     DStandardItem *pItem1 = new DStandardItem(tr("ARM"));
+    pItem1->setFlags(Qt::ItemIsEnabled);
     pItemModel->appendRow(pItem1);
    // pItem1->setCheckState(Qt::Unchecked);
     DStandardItem *pItem2 = new DStandardItem(tr("X86"));
+    pItem2->setFlags(Qt::ItemIsEnabled);
     pItemModel->appendRow(pItem2);
    // pItem2->setCheckState(Qt::Unchecked);
     DStandardItem *pItem3 = new DStandardItem(tr("MIPS"));
+    pItem3->setFlags(Qt::ItemIsEnabled);
     pItemModel->appendRow(pItem3);
    //pItem3->setCheckState(Qt::Unchecked);
     m_pDListView->setModel(pItemModel);
@@ -61,8 +64,8 @@ SelectFrame::SelectFrame(QWidget *parent)
     this->setLayout(pMainLayout);
 
     connect(m_pDListView, &DListView::clicked,[=](const QModelIndex &index){
-        for (int i = 0;i < index.row();i++) {
-            pItemModel->item(index.row())->setCheckState(Qt::Unchecked);
+        for (int i = 0;i < m_pDListView->count();i++) {
+            pItemModel->item(i)->setCheckState(Qt::Unchecked);
         }
         pItemModel->item(index.row())->setCheckState(Qt::Checked);
         pDpushBtn2->setEnabled(true);

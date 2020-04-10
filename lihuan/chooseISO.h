@@ -17,6 +17,7 @@
 #include <DMessageManager>
 #include <DApplicationHelper>
 #include <DFileDialog>
+#include <dfilechooseredit.h>
 
 //#include "mainwindow.h"
 
@@ -30,8 +31,10 @@ public:
     explicit chooseISO(QWidget *parent = nullptr);
     ~chooseISO();
 private:
- DLineEdit *m_pDLineEdit ;
+// DLineEdit *m_pDLineEdit ;
  DPushButton *pDpushBtn2;
+
+ DFileChooserEdit *openfile;
 
 signals:
  void toSelectframe();
@@ -39,6 +42,7 @@ signals:
 public slots:
     void slotDpushBtnOpenClicked();
     void slotDpushBtnNextClicked();
+
 };
 
 #endif // MYWIDGET_H

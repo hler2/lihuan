@@ -27,6 +27,7 @@ signals:
 private:
     DFloatingMessage *pDLabeldeb;
     DPushButton *pDpushBtn2;
+    DLabel *pDLabelChoose;
 
 public slots:
     void slotDpushBtnNextClicked();

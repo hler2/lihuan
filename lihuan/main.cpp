@@ -15,11 +15,12 @@ int main(int argc, char *argv[])
     a.setAttribute(Qt::AA_UseHighDpiPixmaps);
    // a.setTheme("light");
     a.setOrganizationName("deepin");
-    a.setApplicationName("help");
+    a.setApplicationName("帮助");
     a.setApplicationVersion("s1.0.4");
     a.setProductIcon(QIcon::fromTheme("iso_logo"));
     a.setProductName("ISO定制工具");
     a.setApplicationDescription("ISO定制工具是通信提供给装机厂商的一款系统镜像定制工具。");
+    a.setWindowIcon(QIcon::fromTheme("iso_logo"));
 
     //主题记忆
     DApplicationSettings savetheme;
@@ -27,7 +28,8 @@ int main(int argc, char *argv[])
 
     mainwindow w;
 
-    w.setMinimumSize(800, 600);
+//    w.setMinimumSize(800, 600);
+    w.setFixedSize(800, 600);
 
     w.show();
 
